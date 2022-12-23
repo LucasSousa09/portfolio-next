@@ -1,8 +1,7 @@
-// import React, { useContext } from 'react'
-// import { ThemeContext } from '../../contexts/ThemeContextProvider'
+import { useTheme } from 'next-themes'
 
 export function Logo() {
-  // const { themeMode } = useContext(ThemeContext)
+  const { theme } = useTheme()
 
   return (
     <svg
@@ -12,16 +11,21 @@ export function Logo() {
       fill="none"
       viewBox="0 0 280 280"
     >
-      <circle cx="140" cy="140" r="140" fill="#333"></circle>
+      <circle
+        cx="140"
+        cy="140"
+        r="140"
+        fill={`${theme === 'dark' ? '#f4f4f5' : '#333333'}`}
+      ></circle>
       <path
-        fill="#fff"
-        stroke="#fff"
+        fill={`${theme === 'dark' ? '#232323' : '#f4f4f5'}`}
+        stroke={`${theme === 'dark' ? '#232323' : '#f4f4f5'}`}
         strokeWidth="2.8"
         d="M70 221.165V58l89.64 79.568L70 221.165z"
       ></path>
       <path
-        fill="#fff"
-        stroke="#fff"
+        fill={`${theme === 'dark' ? '#232323' : '#f4f4f5'}`}
+        stroke={`${theme === 'dark' ? '#232323' : '#f4f4f5'}`}
         strokeWidth="2.8"
         d="M126.825 219.765H102.56l80.234-81.213 1.021-1.033-1.07-.982L98.773 59.4h24.063l85.148 78.217-81.159 82.148z"
       ></path>
