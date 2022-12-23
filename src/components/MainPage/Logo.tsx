@@ -1,8 +1,8 @@
-import { useTheme } from 'next-themes'
+interface LogoProps {
+  theme?: string
+}
 
-export function Logo() {
-  const { theme } = useTheme()
-
+export function Logo({ theme = 'light' }: LogoProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
