@@ -15,13 +15,13 @@ export function ListItem({
     <li className="flex">
       {isHireMe ? (
         <Link
-          className="text-base text-zinc-100 bg-brand-light dark:text-brand-dark dark:bg-zinc-100 py-3 px-6"
+          className="text-base text-background-light bg-text-light dark:text-background-dark dark:bg-text-dark sm:py-2 sm:px-4  py-3 px-6"
           href={linkRef}
         >
           {linkText}
         </Link>
       ) : (
-        <Link className="text-base" href={linkRef}>
+        <Link className="sm:text-sm md:text-base" href={linkRef}>
           {linkText}
         </Link>
       )}

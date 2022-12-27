@@ -4,7 +4,7 @@ interface HeadingOneProps {
 
 export function HeadingOne({ headingText }: HeadingOneProps) {
   return (
-    <h1 className="text-6xl font-bold leading-loose text-brand-light dark:text-zinc-100">
+    <h1 className="font-bold leading-loose text-3xl sm:text-3.5xl md:text-4xl md:leading-loose lg:text-5xl lg:leading-loose xl:text-6xl xl:leading-loose text-text-light dark:text-text-dark">
       {headingText}
     </h1>
   )

@@ -5,6 +5,7 @@ interface LogoProps {
 export function Logo({ theme = 'light' }: LogoProps) {
   return (
     <svg
+      className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-28 sm:w-48 opacity-10 sm:static sm:translate-x-0 sm:translate-y-0 sm:opacity-100"
       xmlns="http://www.w3.org/2000/svg"
       width="280"
       height="280"
