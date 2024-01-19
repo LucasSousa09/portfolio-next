@@ -4,7 +4,7 @@ import { SquaresFour } from "@phosphor-icons/react/dist/ssr"
 
 export function Header(){
     return (
-        <header className="flex items-center justify-between px-6 py-3 lg:px-12 lg:py-6">
+        <header className="max-w-8xl w-full flex items-center justify-between px-6 py-3 lg:px-12 lg:py-6">
             <strong className="dark:text-shadow-dark text-shadow-light font-extrabold text-xl lg:text-2xl">
                 Lucas Sousa
             </strong>
@@ -13,7 +13,7 @@ export function Header(){
                 <SquaresFour weight="fill" size={20} />
             </button>
 
-            <nav className="hidden sm:flex items-center sm:gap-5 lg:gap-20 font-semibold text-sm lg:text-base">
+            <nav className="hidden sm:flex items-center sm:gap-5 lg:gap-12 xl:gap-20 font-semibold text-sm lg:text-base">
                 
                 <ul className="sm:h-8 sm:w-8 lg:h-11 lg:w-11">
                     <button className="h-full w-full rounded-full sm:border-2 lg:border-4 border-zinc-800 dark:border-white shadow-arr-light dark:shadow-arr-dark hover:bg-zinc-800 dark:hover:bg-white transition-colors ease-linear"/>

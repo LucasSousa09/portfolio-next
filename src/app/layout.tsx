@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html className="light" lang="pt-BR">
-      <body className={`${poppins.className} antialiased bg-zinc-100 text-zinc-800 dark:bg-zinc-900 dark:text-white`}>
+      <body className={`${poppins.className} antialiased bg-zinc-100 text-zinc-800 dark:bg-zinc-900 dark:text-white flex flex-col items-center`}>
         <Header />
         {children}
       </body>
