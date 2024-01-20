@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 
 import { Header } from "@/components/Header";
+import { ThemeProvider } from './themeProvider'
 
 import type { Metadata } from "next";
 
@@ -23,10 +24,14 @@ export default function RootLayout({
 }>) {
   return (
     <html className="light" lang="pt-BR">
-      <body className={`${poppins.className} antialiased bg-zinc-100 text-zinc-800 dark:bg-zinc-900 dark:text-white flex flex-col items-center`}>
-        <Header />
-        {children}
-      </body>
+        <body className={`${poppins.className} antialiased`}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <div className="bg-zinc-100 text-zinc-800 dark:bg-zinc-900 dark:text-white flex flex-col items-center">
+              <Header />
+              {children}          
+            </div>
+          </ThemeProvider>  
+        </body>
     </html>
   );
 }

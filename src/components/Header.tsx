@@ -2,6 +2,8 @@ import Link from "next/link";
 
 import { SquaresFour } from "@phosphor-icons/react/dist/ssr"
 
+import { ThemeSwitcher } from "./ThemeSwitcher";
+
 export function Header(){
     return (
         <header className="max-w-8xl w-full flex items-center justify-between px-6 py-3 lg:px-12 lg:py-6">
@@ -16,7 +18,7 @@ export function Header(){
             <nav className="hidden sm:flex items-center sm:gap-5 lg:gap-12 xl:gap-20 font-semibold text-sm lg:text-base">
                 
                 <ul className="sm:h-8 sm:w-8 lg:h-11 lg:w-11">
-                    <button className="h-full w-full rounded-full sm:border-2 lg:border-4 border-zinc-800 dark:border-white shadow-arr-light dark:shadow-arr-dark hover:bg-zinc-800 dark:hover:bg-white transition-colors ease-linear"/>
+                    <ThemeSwitcher />
                 </ul>
                 
                 <ul>
