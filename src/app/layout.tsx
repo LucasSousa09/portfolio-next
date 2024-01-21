@@ -23,10 +23,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html className="light" lang="pt-BR">
-        <body className={`${poppins.className} antialiased`}>
+    <html lang="pt-BR">
+        <body className={`${poppins.className} antialiased max-w-8xl mx-auto`}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <div className="bg-zinc-100 text-zinc-800 dark:bg-zinc-900 dark:text-white flex flex-col items-center">
+            <div className="bg-zinc-100 text-zinc-700 dark:bg-zinc-900 dark:text-white flex flex-col items-center">
               <Header />
               {children}          
             </div>

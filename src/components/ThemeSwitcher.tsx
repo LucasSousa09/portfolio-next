@@ -12,7 +12,7 @@ export function ThemeSwitcher(){
     return (
         <button
             onClick={toggleTheme} 
-            className="h-full w-full rounded-full sm:border-2 lg:border-4 border-zinc-800 dark:border-white shadow-arr-light dark:shadow-arr-dark hover:bg-zinc-800 dark:hover:bg-white transition-colors ease-linear"
+            className="h-full w-full rounded-full sm:border-2 lg:border-4 border-zinc-700 dark:border-white shadow-arr-light dark:shadow-arr-dark hover:bg-zinc-700 dark:hover:bg-white transition-colors ease-linear"
         />    
     )
 }
