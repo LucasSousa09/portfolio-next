@@ -1,30 +1,38 @@
+import Image from 'next/image'
 import { GithubLogo, Link } from '@phosphor-icons/react/dist/ssr'
+
+import projectPresentationImg from '../assets/project-presentation.jpg'
 
 export function ProjectDisplay(){
     return (
-        <div className="flex items-center px-16 justify-center h-[612px] bg-orange-900 rounded group">
-            <div className="hidden group-hover:flex flex-col items-start justify-center">
-                <strong>Pizzeria D'art</strong>
-                <p>A pizzeria D’art foi um projeto de aprendizado,
+        <div className="relative flex items-center px-16 justify-center h-[612px] bg-orange-900 rounded group lg:mb-16">
+            <Image className='absolute group-hover:brightness-50 top-0 left-0 bottom-0 right-0 object-cover w-full h-full transition-all ease-linear' src={projectPresentationImg} alt="" />
+            <div className="hidden group-hover:flex flex-col items-start justify-center z-10">
+                
+                <strong className='w-full text-center lg:text-3xl mb-6'>Pizzeria D'art</strong>
+                
+                <p className="lg:text-xl lg:leading-normal text-white">A pizzeria D'art foi um projeto de aprendizado,
                    com fortes inspirações no Coffee Delivery uma
                    aplicação da Rocketseat.
                 </p>
-                <p>
+                <p className="lg:text-xl lg:leading-normal text-white">
                     As tecnologias principais utilizadas foram:
                 </p>
-                <ul>
-                    <li>NextJS</li>
+                
+                <ul className="lg:text-xl lg:leading-normal text-white list-disc lg:pl-7 lg:mb-11">
+                    <li className="">NextJS</li>
                     <li>TailwindCSS</li>
                     <li>Postgres</li>
                     <li>Stripe</li>
                 </ul>
-                <div>
-                    <button>
-                        <GithubLogo />
+                
+                <div className="flex w-full items-center justify-between">
+                    <button className="flex items-center gap-3 bg-white text-zinc-800 font-semibold lg:px-6 lg:py-3 hover:shadow-arr-dark hover:text-shadow-light-md transition-all ease-linear">
+                        <GithubLogo className="lg:h-8 lg:w-8" weight="bold"/>
                         Github
                     </button>
-                    <button>
-                        <Link />
+                    <button className="flex items-center gap-3 bg-white text-zinc-800 font-semibold lg:px-6 lg:py-3 hover:shadow-arr-dark hover:text-shadow-light-md transition-all ease-linear">
+                        <Link className="lg:h-8 lg:w-8" weight="bold"/>
                         Website
                     </button>
                 </div>

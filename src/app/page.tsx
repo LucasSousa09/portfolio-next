@@ -36,7 +36,7 @@ export default function Home() {
         </div>
       </main>
       <section className="flex flex-col items-center justify-center w-full h-[calc(100vh-52px)] sm:h-[calc(100vh-56px)] lg:h-[calc(100vh-92px)]">
-        <header className="flex items-center gap-3 w-full justify-start px-16">
+        <header className="flex items-center justify-start gap-3 w-full px-16 lg:mb-8">
           <Image className="hidden dark:block h-8 w-8 sm:h-12 sm:w-12  lg:h-16 lg:w-16" src={logoImgDark} alt="" />
           <Image className="block dark:hidden h-8 w-8 sm:h-12 sm:w-12  lg:h-16 lg:w-16" src={logoImgLight} alt="" />
 
