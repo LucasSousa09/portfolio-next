@@ -1,11 +1,14 @@
 import Image from "next/image";
 import { CaretCircleDown } from "@phosphor-icons/react/dist/ssr";
 
-import { Paragraph } from "@/components/Paragraph";
+import { Section } from "../components/Section";
+import { Paragraph } from "../components/Paragraph"
+import { ParagraphMain } from "../components/ParagraphMain";
+import { ProjectDisplay } from "../components/ProjectDisplay";
 
 import logoImgDark from '../assets/logo-dark.svg'
 import logoImgLight from '../assets/logo-light.svg'
-import { ProjectDisplay } from "@/components/ProjectDisplay";
+import { SectionHeader } from "@/components/SectionHeader";
 
 export default function Home() {
   return (
@@ -17,15 +20,15 @@ export default function Home() {
 
         <div className="mt-[-144px] sm:mt-0 flex flex-col items-center lg:items-start">
           <div className="max-w-[300px] sm:max-w-[400px] lg:max-w-[600px]">
-            <Paragraph animation="animate-[fade-out_1.5s_ease-in-out_forwards]">
+            <ParagraphMain animation="animate-[fade-out_1.5s_ease-in-out_forwards]">
               <span className="text-shadow-light-md dark:text-shadow-dark-md">Dev Front-end,</span>
-            </Paragraph>
-            <Paragraph animation="animate-[fade-out_1.5s_ease-in-out_1.2s_forwards]">
+            </ParagraphMain>
+            <ParagraphMain animation="animate-[fade-out_1.5s_ease-in-out_1.2s_forwards]">
               Te ajudando a dar
-            </Paragraph>
-            <Paragraph animation="animate-[fade-out_1.5s_ease-in-out_2.2s_forwards]">
+            </ParagraphMain>
+            <ParagraphMain animation="animate-[fade-out_1.5s_ease-in-out_2.2s_forwards]">
               <span className="text-shadow-light-md dark:text-shadow-dark-md">Vida</span> ao seu site dos sonhos!
-            </Paragraph>
+            </ParagraphMain>
           </div>
 
           <button className="hover:animate-bounce w-full mt-6 sm:mt-12 flex items-center gap-2 text-zinc-400 text-shadow-light dark:text-shadow-dark font-semibold md:text-lg lg:text-2xl xl:text-3xl">
@@ -36,15 +39,9 @@ export default function Home() {
         </div>
       </main>
 
-      <section className="flex flex-col items-center justify-center gap-8 lg:gap-16 w-full min-h-[calc(100vh-52px)] sm:h-[calc(100vh-56px)] lg:h-[calc(100vh-92px)]">
-        <header className="flex items-center justify-start gap-3 w-full px-16">
-          <Image className="hidden dark:block h-8 w-8 sm:h-12 sm:w-12  lg:h-16 lg:w-16" src={logoImgDark} alt="" />
-          <Image className="block dark:hidden h-8 w-8 sm:h-12 sm:w-12  lg:h-16 lg:w-16" src={logoImgLight} alt="" />
+      <Section>
+        <SectionHeader title="Meus Trabalhos" />
 
-          <h2 className="text-lg sm:text-2xl lg:text-3xl font-bold text-shadow-light-md dark:text-shadow-dark-md">
-            Meus Trabalhos
-          </h2>
-        </header>
         <div className="grid md:grid-cols-2 w-full gap-5 lg:gap-10 px-20">
           <ProjectDisplay />
           <ProjectDisplay />
@@ -53,7 +50,40 @@ export default function Home() {
           <CaretCircleDown className="h-5 w-5 lg:h-10 lg:w-10" weight="fill" />
           Mostrar mais
         </button>
-      </section>
+      </Section>
+
+      <Section>
+        <SectionHeader title="Sobre Mim" />
+
+        <div className="grid lg:grid-cols-2 lg:px-20 lg:gap-5 xl:gap-10 lg:mb-16">
+          <div className="flex flex-col max-w-[300px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] overflow-clip">
+              <Paragraph> 
+                Após decidir trocar de carreira, comecei a aprender desenvolvimento web por volta de março de 2020 assistindo vídeos no Youtube. Foi nessa época que tive meu primeiro contato com a Rocketseat na semana NLW e meu primeiro aplicativo com eles foi o Proffy.
+              </Paragraph>
+
+              <Paragraph> 
+                Decidi então realizar um curso rapido de HTML, CSS & Javascript (50 projects in 50 days - from Florin Pop e Brad Traversy) em 2021.
+              </Paragraph>
+
+              <Paragraph> 
+                Em 2022 completei o bootcamp Ignite da Rocketseat na trilha de ReactJS
+              </Paragraph>
+
+              <Paragraph> 
+                E no início de 2023 consegui meu primeiro trabalho freelancer com desenvolvimento Front-end na Upwork.
+              </Paragraph>
+
+              <Paragraph> 
+                Atualmente me encontro a procura de mais trabalhos nessa área.
+              </Paragraph>
+          </div>
+          <div className="hidden lg:flex h-full w-full bg-orange-500">
+        
+          </div>
+
+        </div>
+
+      </Section>
     </>
   );
 }
