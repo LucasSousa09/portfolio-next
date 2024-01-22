@@ -15,25 +15,25 @@ export function Header(){
                 <SquaresFour weight="fill" size={20} />
             </button>
 
-            <nav className="hidden sm:flex items-center sm:gap-5 lg:gap-12 xl:gap-20 font-semibold text-sm lg:text-base">
+            <nav className="hidden list-none sm:flex items-center sm:gap-5 lg:gap-12 xl:gap-20 font-semibold text-sm lg:text-base">
                 
-                <li className="list-none sm:h-8 sm:w-8 lg:h-11 lg:w-11">
+                <li className=" sm:h-8 sm:w-8 lg:h-11 lg:w-11">
                     <ThemeSwitcher />
                 </li>
                 
-                <li className="list-none">
+                <li>
                     <Link className="hover:text-shadow-light-md dark:hover:text-shadow-dark-md transition-all ease-linear" href="" >
                         Meus trabalhos
                     </Link>
                 </li>
                 
-                <li className="list-none">
+                <li>
                     <Link className="hover:text-shadow-light-md dark:hover:text-shadow-dark-md transition-all ease-linear" href="" >
                         Sobre Mim
                     </Link>
                 </li>
                 
-                <li className="list-none">
+                <li>
                     <Link className="bg-zinc-700 text-zinc-100 dark:bg-white dark:text-zinc-900 px-4 lg:px-6 py-2 lg:py-3 hover:shadow-arr-light dark:hover:shadow-arr-dark hover:text-shadow-dark-md dark:hover:text-shadow-light-md transition-all ease-linear" href="" >
                         Me contrate
                     </Link>
