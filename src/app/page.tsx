@@ -35,16 +35,17 @@ export default function Home() {
           
         </div>
       </main>
-      <section className="flex flex-col items-center justify-center w-full h-[calc(100vh-52px)] sm:h-[calc(100vh-56px)] lg:h-[calc(100vh-92px)]">
-        <header className="flex items-center justify-start gap-3 w-full px-16 lg:mb-8">
+
+      <section className="flex flex-col items-center justify-center gap-8 lg:gap-16 w-full min-h-[calc(100vh-52px)] sm:h-[calc(100vh-56px)] lg:h-[calc(100vh-92px)]">
+        <header className="flex items-center justify-start gap-3 w-full px-16">
           <Image className="hidden dark:block h-8 w-8 sm:h-12 sm:w-12  lg:h-16 lg:w-16" src={logoImgDark} alt="" />
           <Image className="block dark:hidden h-8 w-8 sm:h-12 sm:w-12  lg:h-16 lg:w-16" src={logoImgLight} alt="" />
 
-          <h2 className="text-lg sm:text-2xl lg:text-3xl font-bold">
+          <h2 className="text-lg sm:text-2xl lg:text-3xl font-bold text-shadow-light-md dark:text-shadow-dark-md">
             Meus Trabalhos
           </h2>
         </header>
-        <div className="grid grid-cols-2 w-full gap-10 px-20">
+        <div className="grid md:grid-cols-2 w-full gap-5 lg:gap-10 px-20">
           <ProjectDisplay />
           <ProjectDisplay />
         </div>
