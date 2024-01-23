@@ -9,6 +9,10 @@ const config: Config = {
   darkMode: 'class',
   theme: {
     extend: {
+      margin: {
+        18: '4.5rem',
+        22: '5.5rem'
+      },
       boxShadow: {
         'arr-light': '0 0 8px 1px rgba(0, 0, 0, 0.3)',
         'arr-dark': '0 0 4px 2px rgba(255, 255, 255, 0.4)',

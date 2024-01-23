@@ -1,14 +1,22 @@
 import Image from "next/image";
-import { CaretCircleDown } from "@phosphor-icons/react/dist/ssr";
+import { 
+  CaretCircleDown, 
+  EnvelopeSimple, 
+  GithubLogo, 
+  LinkedinLogo, 
+  Phone 
+} from "@phosphor-icons/react/dist/ssr";
 
 import { Section } from "../components/Section";
 import { Paragraph } from "../components/Paragraph"
+import { FormLabel } from "../components/FormLabel";
+import { SocialLink } from "../components/SocialLink";
+import { SectionHeader } from "../components/SectionHeader";
 import { ParagraphMain } from "../components/ParagraphMain";
 import { ProjectDisplay } from "../components/ProjectDisplay";
 
 import logoImgDark from '../assets/logo-dark.svg'
 import logoImgLight from '../assets/logo-light.svg'
-import { SectionHeader } from "@/components/SectionHeader";
 
 export default function Home() {
   return (
@@ -83,6 +91,48 @@ export default function Home() {
 
         </div>
 
+      </Section>
+
+      <Section>
+        <SectionHeader title="Me Contrate" />
+
+        
+        <div className="grid md:grid-cols-[minmax(0,700px)_minmax(354px,1fr)] lg:grid-cols-[minmax(0,700px)_minmax(354px,430px)] md:content-start md:gap-6 lg:gap-12 xl:gap-16 md:max-h-[268px] lg:max-h-full w-full px-5 sm:px-16 md:px-20">
+          
+          <form className="flex flex-col mb-8">
+            <strong className="font-medium text-sm sm:text-base lg:text-lg mb-5 lg:mb-8 md:whitespace-nowrap">Sinta-se à vontade para me contatar por qualquer um dos métodos abaixo</strong> 
+            <FormLabel labelFor="name" labelText="Nome"/>
+            <input className="mb-3 md:h-12 text-sm p-2 bg-zinc-500 text-white dark:bg-zinc-700" type="text" id="name" />
+            
+            <FormLabel labelFor="email" labelText="Email"/>
+            <input className="mb-3 md:h-12 text-sm p-2 bg-zinc-500 text-white dark:bg-zinc-700" type="text" id="email" />
+            
+            <FormLabel labelFor="message" labelText="Mensagem"/>
+            <textarea className="text-sm p-2 bg-zinc-500 text-white dark:bg-zinc-700 md:h-16 lg:h-40" id="message" />
+          </form>
+          
+          <div className="flex flex-col gap-2 md:gap-4 lg:gap-5 md:mt-18 lg:mt-22">
+            <SocialLink linkUrl="">
+              <GithubLogo className="h-5 w-5" weight="fill" />
+              Github
+            </SocialLink>
+
+            <SocialLink>
+              <LinkedinLogo className="h-5 w-5" weight="fill" />
+              Linkedin
+            </SocialLink>
+
+            <SocialLink clickable={false}>
+              <Phone className="h-5 w-5" weight="bold" />
+              (11) 93211-0323
+            </SocialLink>
+
+            <SocialLink>
+              <EnvelopeSimple className="h-5 w-5" weight="bold" />
+              lucasrodrigues.sousa09@gmail.com
+            </SocialLink>
+          </div>
+        </div>         
       </Section>
     </>
   );
