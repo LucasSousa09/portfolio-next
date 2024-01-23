@@ -8,7 +8,7 @@ import { ThemeProvider } from './themeProvider'
 import type { Metadata } from "next";
 
 const poppins = Poppins({
-  weight: ["500","600","700", "900"],
+  weight: ["400","500","600","700", "900"],
   subsets: ["latin"]
 });
 
