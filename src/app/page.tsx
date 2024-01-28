@@ -1,3 +1,4 @@
+import Link from "next/link"
 import Image from "next/image";
 import { 
   CaretCircleDown, 
@@ -7,9 +8,10 @@ import {
   Phone 
 } from "@phosphor-icons/react/dist/ssr";
 
+import { Form } from "../components/Form";
 import { Section } from "../components/Section";
-import { Paragraph } from "../components/Paragraph"
-import { FormLabel } from "../components/FormLabel";
+import { Container } from "../components/Container";
+import { Paragraph } from "../components/Paragraph";
 import { SocialLink } from "../components/SocialLink";
 import { SectionHeader } from "../components/SectionHeader";
 import { ParagraphMain } from "../components/ParagraphMain";
@@ -18,10 +20,30 @@ import { ProjectDisplay } from "../components/ProjectDisplay";
 import logoImgDark from '../assets/logo-dark.svg'
 import logoImgLight from '../assets/logo-light.svg'
 
-export default function Home() {
+type ProjectProps = {
+  id: string,
+  title: string,
+  image: string,
+  description: string,
+  technologies: {
+    text: string,
+    techs: string[]
+  }
+  links: {
+    githubLink: string,
+    websiteLink: string
+  }
+}
+
+export default async function Home() {
+
+  const data = await fetch('http://localhost:3000/api/get-projects', {next: { revalidate: 1}})
+
+  const projectsData = await data.json()
+
   return (
-    <>
-      <main className="relative w-full h-[calc(100vh-52px)] sm:h-[calc(100vh-56px)] lg:h-[calc(100vh-92px)] flex justify-center lg:justify-between items-center sm:items-start sm:pt-32 sm:px-8 md:px-12 sm:gap-12 md:gap-14 xl:px-32 ">
+    <Container>
+      <main id="main" className="relative w-full h-[calc(100vh-52px)] sm:h-[calc(100vh-56px)] lg:h-[calc(100vh-92px)] flex justify-center lg:justify-between items-center sm:items-start sm:pt-32 sm:px-8 md:px-12 sm:gap-12 md:gap-14 xl:px-32 mb-[92px]">
             
         <Image className="hidden dark:block absolute top-1/2 translate-y-[-50%] right-1/2 translate-x-1/2 sm:static sm:translate-y-0 sm:translate-x-0 mt-[-96px] sm:mt-4 xl:mt-12 h-40 w-40 sm:h-48 sm:w-48 lg:h-72 lg:w-72 opacity-10 sm:opacity-100" src={logoImgDark} alt="" />
         <Image className="dark:hidden block absolute top-1/2 translate-y-[-50%] right-1/2 translate-x-1/2 sm:static sm:translate-y-0 sm:translate-x-0 mt-[-96px] sm:mt-4 xl:mt-12 h-40 w-40 sm:h-48 sm:w-48 lg:h-72 lg:w-72 opacity-10 sm:opacity-100" src={logoImgLight} alt="" />
@@ -41,18 +63,31 @@ export default function Home() {
 
           <button className="hover:animate-bounce w-full mt-6 sm:mt-12 flex items-center gap-2 text-zinc-400 text-shadow-light dark:text-shadow-dark font-semibold md:text-lg lg:text-2xl xl:text-3xl">
             <CaretCircleDown className="h-5 w-5 lg:h-10 lg:w-10" weight="fill" />
-            Conheça um pouco do meu trabalho!
+            <Link href="#works">
+              Conheça um pouco do meu trabalho!
+            </Link>
           </button>
           
         </div>
       </main>
 
-      <Section>
+      <Section id="works">
         <SectionHeader title="Meus Trabalhos" />
 
         <div className="grid md:grid-cols-2 w-full gap-5 lg:gap-10 px-20">
-          <ProjectDisplay />
-          <ProjectDisplay />
+          {
+            projectsData.data.map((project: ProjectProps) => (
+                <ProjectDisplay 
+                  key={project.id}
+                  title={project.title} 
+                  description={project.description} 
+                  image={project.image}
+                  links={project.links}
+                  technologies={project.technologies} 
+                />
+              )
+            )
+          }
         </div>
         <button className="hover:text-shadow-light-md dark:hover:text-shadow-dark-md transition-all ease-linear flex items-center justify-center gap-2 text-zinc-400 text-shadow-light dark:text-shadow-dark font-medium text-sm sm:text-xl lg:text-2xl">
           <CaretCircleDown className="h-5 w-5 lg:h-10 lg:w-10" weight="fill" />
@@ -60,7 +95,7 @@ export default function Home() {
         </button>
       </Section>
 
-      <Section>
+      <Section id="about">
         <SectionHeader title="Sobre Mim" />
 
         <div className="grid lg:grid-cols-2 lg:px-20 lg:gap-5 xl:gap-10 lg:mb-16">
@@ -93,31 +128,20 @@ export default function Home() {
 
       </Section>
 
-      <Section>
+      <Section id="hire">
         <SectionHeader title="Me Contrate" />
 
         
         <div className="grid md:grid-cols-[minmax(0,700px)_minmax(354px,1fr)] lg:grid-cols-[minmax(0,700px)_minmax(354px,430px)] md:content-start md:gap-6 lg:gap-12 xl:gap-16 md:max-h-[268px] lg:max-h-full w-full px-5 sm:px-16 md:px-20">
-          
-          <form className="flex flex-col mb-8">
-            <strong className="font-medium text-sm sm:text-base lg:text-lg mb-5 lg:mb-8 md:whitespace-nowrap">Sinta-se à vontade para me contatar por qualquer um dos métodos abaixo</strong> 
-            <FormLabel labelFor="name" labelText="Nome"/>
-            <input className="mb-3 md:h-12 text-sm p-2 bg-zinc-500 text-white dark:bg-zinc-700" type="text" id="name" />
-            
-            <FormLabel labelFor="email" labelText="Email"/>
-            <input className="mb-3 md:h-12 text-sm p-2 bg-zinc-500 text-white dark:bg-zinc-700" type="text" id="email" />
-            
-            <FormLabel labelFor="message" labelText="Mensagem"/>
-            <textarea className="text-sm p-2 bg-zinc-500 text-white dark:bg-zinc-700 md:h-16 lg:h-40" id="message" />
-          </form>
+          <Form />
           
           <div className="flex flex-col gap-2 md:gap-4 lg:gap-5 md:mt-18 lg:mt-22">
-            <SocialLink linkUrl="">
+            <SocialLink linkUrl="https://github.com/LucasSousa09">
               <GithubLogo className="h-5 w-5" weight="fill" />
               Github
             </SocialLink>
 
-            <SocialLink>
+            <SocialLink linkUrl="https://www.linkedin.com/in/lucas-sousa-4892901b4/">
               <LinkedinLogo className="h-5 w-5" weight="fill" />
               Linkedin
             </SocialLink>
@@ -127,13 +151,13 @@ export default function Home() {
               (11) 93211-0323
             </SocialLink>
 
-            <SocialLink>
+            <SocialLink linkUrl="https://mail.google.com/">
               <EnvelopeSimple className="h-5 w-5" weight="bold" />
               lucasrodrigues.sousa09@gmail.com
             </SocialLink>
           </div>
         </div>         
       </Section>
-    </>
+    </Container>
   );
 }
