@@ -2,8 +2,7 @@ import { Poppins } from "next/font/google";
 
 import "./globals.css";
 
-import { Header } from "@/components/Header";
-import { ThemeProvider } from './themeProvider'
+import { ThemeProvider } from '../components/themeProvider'
 
 import type { Metadata } from "next";
 
@@ -23,13 +22,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" className="scroll-smooth">
         <body className={`${poppins.className} antialiased max-w-8xl mx-auto`}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <div className="bg-zinc-100 text-zinc-700 dark:bg-zinc-900 dark:text-white flex flex-col items-center">
-              <Header />
-              {children}          
-            </div>
+            {children}
           </ThemeProvider>  
         </body>
     </html>
