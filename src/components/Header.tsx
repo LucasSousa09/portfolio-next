@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { SquaresFour } from "@phosphor-icons/react"
+import { SquaresFour, X } from "@phosphor-icons/react"
 
 import { ThemeSwitcher } from "./ThemeSwitcher";
 
@@ -11,6 +11,8 @@ export function Header(){
     const [myWorksHighlight, setMyWorksHighlight] = useState('')
     const [aboutMeHighlight, setAboutMeHighlight] = useState('')
     const [hireMeHighlight, setHireMeHighlight] = useState('')
+
+    const [showNavBar, setShowNavBar] = useState(false)
 
     useEffect(() => {
         function highlightNavLinks(text: string, headerOffset: number, windowHeight: number, multiplier: number){
@@ -30,7 +32,7 @@ export function Header(){
                 if(text === 'hire me'){
                     setMyWorksHighlight('')
                     setAboutMeHighlight('')
-                    setHireMeHighlight('brightness-150')
+                    setHireMeHighlight('border-b-2 border-zinc-700 dark:border-white sm:border-0 sm:brightness-150')
                 }
                 return
             }
@@ -68,9 +70,42 @@ export function Header(){
                 </strong>
             </Link>
 
-            <button className="sm:hidden">
+            <button onClick={() => setShowNavBar(state => !state)} className="sm:hidden">
                 <SquaresFour weight="fill" size={20} />
             </button>
+
+            <nav className={`sm:hidden absolute top-0 ${showNavBar ? 'right-0' : 'right-[-50%]'} h-screen w-1/2 flex flex-col gap-2 pt-10 px-4 list-none font-medium transition-all ease-linear bg-zinc-200 dark:bg-zinc-800`}>                         
+                <button 
+                    onClick={() => setShowNavBar(state => !state)}
+                    className="absolute top-4 right-4"
+                >
+                    <X weight="bold"/>
+                </button>
+                
+                <li className={`${myWorksHighlight} py-2 lg:py-3`}>
+                    <Link 
+                        href="#works"
+                        className="hover:text-shadow-light-md dark:hover:text-shadow-dark-md transition-all ease-linear">
+                        Meus trabalhos
+                    </Link>
+                </li>
+                
+                <li className={`${aboutMeHighlight} py-2 lg:py-3`}>
+                    <Link 
+                        href="#about"
+                        className="hover:text-shadow-light-md dark:hover:text-shadow-dark-md transition-all ease-linear">
+                        Sobre Mim
+                    </Link>
+                </li>
+                
+                <li className={`${hireMeHighlight} py-2 lg:py-3`}>
+                    <Link 
+                        href="#hire"
+                        className="hover:text-shadow-light-md dark:hover:text-shadow-dark-md transition-all ease-linear">
+                        Me contrate
+                    </Link>
+                </li>
+            </nav>
 
             <nav className="hidden list-none sm:flex items-center sm:gap-5 lg:gap-12 xl:gap-20 font-semibold text-sm lg:text-base">       
                 <li className=" sm:h-8 sm:w-8 lg:h-11 lg:w-11">
