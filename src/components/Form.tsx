@@ -6,6 +6,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, SubmitHandler } from 'react-hook-form'
 
 import { FormLabel } from "./FormLabel";
+import { useEffect, useState } from 'react';
+import { Toast } from './Toast';
 
 const SendMessageSchema = zod.object({
     name: zod.string()
@@ -21,27 +23,54 @@ const SendMessageSchema = zod.object({
 export type SendMessageData = zod.infer<typeof SendMessageSchema>
 
 export function Form() {
+    const [ success, setSuccess ] = useState(false)
+    const [ message, setMessage ] = useState('')
+    const [ sendingEmail, setSendingEmail ] = useState(false)
+
     const { 
         register,
         handleSubmit,
         formState: { errors }
-    } = useForm<SendMessageData>()
+    } = useForm<SendMessageData>({
+        resolver: zodResolver(SendMessageSchema)
+    })
+
+    useEffect(() => {
+        const firstErrorKey = Object.keys(errors)[0]
+        const firstError = errors[firstErrorKey as keyof SendMessageData]?.message
+        
+        setMessage(firstError || '')
+        setTimeout(() => {
+            setMessage('')
+        }, 3000)
+        
+    }, [errors])
     
     const onSubmit: SubmitHandler<SendMessageData> = async (messageData) => {
-        fetch('http://localhost:3000/api/send-message', {
+        setSendingEmail(true)
+        await fetch('http://localhost:3000/api/send-mail-nodemailer', {
             method: "POST",
             body: JSON.stringify(messageData),
             headers: {"Content-type": "application/json; charset=UTF-8"}
         })
+
+        setSuccess(true)
+        setMessage('Email enviado com sucesso')
+        setTimeout(() => {
+            setMessage('')
+            setSuccess(false)
+        }, 4000)
+
+        setSendingEmail(false)
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col mb-4 sm:mb-8">
+        <form onSubmit={handleSubmit(onSubmit)} className="relative flex flex-col mb-4 sm:mb-8">
             <strong className="font-medium text-sm sm:text-base lg:text-lg mb-5 lg:mb-8 md:whitespace-nowrap">Sinta-se à vontade para me contatar por qualquer um dos métodos abaixo</strong> 
             
             <FormLabel labelFor="name" labelText="Nome"/>
             <input 
-                {...register("name")}
+                {...register("name", {required: true})}
                 id="name" 
                 type="text" 
                 className="mb-3 md:h-12 text-sm p-2 bg-zinc-500 text-white dark:bg-zinc-700" 
@@ -49,7 +78,7 @@ export function Form() {
             
             <FormLabel labelFor="email" labelText="Email"/>
             <input 
-                {...register("email")}
+                {...register("email", {required: true})}
                 id="email" 
                 type="text" 
                 className="mb-3 md:h-12 text-sm p-2 bg-zinc-500 text-white dark:bg-zinc-700" 
@@ -57,12 +86,19 @@ export function Form() {
             
             <FormLabel labelFor="message" labelText="Mensagem"/>
             <textarea 
-                {...register("message")}
+                {...register("message", {required: true})}
                 id="message" 
                 className="mb-3 text-sm p-2 bg-zinc-500 text-white dark:bg-zinc-700 md:h-16 lg:h-40" 
             />
 
-            <button className="font-medium text-sm sm:text-base bg-zinc-700 text-zinc-100 dark:bg-white dark:text-zinc-900 px-4 lg:px-6 py-2 lg:py-3 hover:shadow-arr-light dark:hover:shadow-arr-dark hover:text-shadow-dark-md dark:hover:text-shadow-light-md transition-all ease-linear md:w-fit" type="submit">Enviar!</button>
+            <button 
+                disabled={sendingEmail} 
+                className="disabled:brightness-75 disabled:cursor-not-allowed font-medium text-sm sm:text-base bg-zinc-700 text-zinc-100 dark:bg-white dark:text-zinc-900 px-4 lg:px-6 py-2 lg:py-3 hover:shadow-arr-light dark:hover:shadow-arr-dark hover:text-shadow-dark-md dark:hover:text-shadow-light-md transition-all ease-linear md:w-fit" 
+                type="submit"
+            >
+                Enviar!
+            </button>
+            <Toast text={message} success={success}/>
         </form>
     )
 }
