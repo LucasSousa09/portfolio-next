@@ -1,6 +1,8 @@
 import { google } from 'googleapis'
 import nodemailer from 'nodemailer'
 
+import XOAuth2 from 'nodemailer/lib/xoauth2' 
+
 import { SendMessageData } from '../../../components/Form'
 
 export async function POST( request: Request ){  
@@ -25,12 +27,12 @@ export async function POST( request: Request ){
         const transport = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                type: 'OAuth2',
+                type: 'OAUTH2',
                 user: 'lucassousa.emailsender@gmail.com',
-                clientId: CLIENT_ID,
-                clientSecret: CLIENT_SECRET,
-                refreshToken: REFRESH_TOKEN,
-                accessToken: accessTocken
+                clientId: CLIENT_ID || '',
+                clientSecret: CLIENT_SECRET || '',
+                refreshToken: REFRESH_TOKEN || '',
+                accessToken: String(accessTocken),
             }
         })
 

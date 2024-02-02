@@ -48,14 +48,19 @@ export function Form() {
     
     const onSubmit: SubmitHandler<SendMessageData> = async (messageData) => {
         setSendingEmail(true)
-        await fetch('http://localhost:3000/api/send-mail-nodemailer', {
+        const res = await fetch('http://localhost:3000/api/send-mail-nodemailer', {
             method: "POST",
             body: JSON.stringify(messageData),
             headers: {"Content-type": "application/json; charset=UTF-8"}
         })
 
-        setSuccess(true)
-        setMessage('Email enviado com sucesso')
+        if(res.status === 200){
+            setSuccess(true)
+            setMessage('Email enviado com sucesso')
+        }
+        else{
+            setMessage('Falha ao enviar email, tente novamente mais tarde')
+        }
         setTimeout(() => {
             setMessage('')
             setSuccess(false)
