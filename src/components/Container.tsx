@@ -10,7 +10,7 @@ export function Container({
 }: ContainerProps){
 
     return (
-            <div className="bg-zinc-100 text-zinc-700 dark:bg-zinc-900 dark:text-white flex flex-col items-center">
+            <div className="bg-zinc-100 text-zinc-700 dark:bg-zinc-900 dark:text-white flex flex-col items-center overflow-clip">
                 <Header />
                 {children}     
             </div>
