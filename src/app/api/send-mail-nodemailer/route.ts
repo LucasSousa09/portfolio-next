@@ -1,8 +1,6 @@
 import { google } from 'googleapis'
 import nodemailer from 'nodemailer'
 
-import XOAuth2 from 'nodemailer/lib/xoauth2' 
-
 import { SendMessageData } from '../../../components/Form'
 
 export async function POST( request: Request ){  
