@@ -37,11 +37,9 @@ type ProjectProps = {
 
 export default async function Home() {
 
-  // const data = await fetch(`${process.env.NEXT_URL}/api/get-projects`, {next: { revalidate: 1}})
+  const data = await fetch(`${process.env.NEXT_URL}/api/get-projects`, {next: { revalidate: 1}})
 
-  // const projectsData = await data.json()
-
-  const projectsData = {data: []}
+  const projectsData = await data.json()
 
   return (
     <Container>
