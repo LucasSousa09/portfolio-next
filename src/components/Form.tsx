@@ -48,7 +48,7 @@ export function Form() {
     
     const onSubmit: SubmitHandler<SendMessageData> = async (messageData) => {
         setSendingEmail(true)
-        const res = await fetch('http://localhost:3000/api/send-mail-nodemailer', {
+        const res = await fetch(`${process.env.NEXT_URL}/api/send-mail-nodemailer`, {
             method: "POST",
             body: JSON.stringify(messageData),
             headers: {"Content-type": "application/json; charset=UTF-8"}
