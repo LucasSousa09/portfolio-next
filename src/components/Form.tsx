@@ -8,6 +8,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { FormLabel } from "./FormLabel";
 import { useEffect, useState } from 'react';
 import { Toast } from './Toast';
+import { api } from '@/lib/axios';
 
 const SendMessageSchema = zod.object({
     name: zod.string()
@@ -48,11 +49,13 @@ export function Form() {
     
     const onSubmit: SubmitHandler<SendMessageData> = async (messageData) => {
         setSendingEmail(true)
-        const res = await fetch(`${process.env.NEXT_URL}/api/send-mail-nodemailer`, {
-            method: "POST",
-            body: JSON.stringify(messageData),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
-        })
+        // const res = await fetch(`${process.env.NEXT_URL}/api/send-mail-nodemailer`, {
+        //     method: "POST",
+        //     body: JSON.stringify(messageData),
+        //     headers: {"Content-type": "application/json; charset=UTF-8"}
+        // })
+
+        const res =  await api.post('/send-mail-nodemailer', messageData)
 
         if(res.status === 200){
             setSuccess(true)
